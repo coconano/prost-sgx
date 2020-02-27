@@ -10,14 +10,14 @@ description = "A Protocol Buffers implementation for the Rust Language."
 edition = "2018"
 
 [dependencies]
-bytes = "0.5"
 heck = "0.3"
-itertools = "0.8"
 log = "0.4"
+itertools = { version = "0.8", default-features = false, features = [] }
+bytes = { git = "https://github.com/mesalock-linux/bytes-sgx" }
 multimap = { version = "0.8", default-features = false }
 petgraph = { version = "0.5", default-features = false }
-prost = { version = "0.6.1", path = ".." }
-prost-types = { version = "0.6.1", path = "../prost-types" }
+prost = { git = "https://github.com/coconano/prost-sgx" }
+prost-types = { git = "https://github.com/coconano/prost-sgx" }
 tempfile = "3"
 
 [build-dependencies]

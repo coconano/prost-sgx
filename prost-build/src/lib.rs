@@ -103,12 +103,21 @@
 //!
 //! If `PROTOC_INCLUDE` is not found in the environment, then the Protobuf include directory bundled
 //! in the prost-build crate is be used.
+#![cfg_attr(all(feature = "mesalock_sgx",
+                not(target_env = "sgx")), no_std)]
+#![cfg_attr(all(target_env = "sgx", target_vendor = "mesalock"), feature(rustc_private))]
+
+#[cfg(all(feature = "mesalock_sgx", not(target_env = "sgx")))]
+#[macro_use]
+extern crate sgx_tstd as std;
 
 mod ast;
 mod code_generator;
 mod extern_paths;
 mod ident;
 mod message_graph;
+
+use std::prelude::v1::*;
 
 use std::collections::HashMap;
 use std::default;
